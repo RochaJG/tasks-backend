@@ -6,6 +6,7 @@ exports.up = (knex, Promise) => {
     table.dateTime('doneAt')
     table
       .integer('userId')
+      .unsigned()
       .references('id')
       .inTable('users')
       .notNull()

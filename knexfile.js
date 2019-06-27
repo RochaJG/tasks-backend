@@ -1,11 +1,11 @@
 // Update with your config settings.
 
 module.exports = {
-  client: 'postgresql',
+  client: 'mysql',
   connection: {
     database: 'tasks',
-    user: 'postgres',
-    password: 'post123'
+    user: 'root',
+    password: 'root'
   },
   pool: {
     min: 2,
