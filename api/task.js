@@ -18,17 +18,23 @@ module.exports = app => {
   }
 
   const save = (req, res) => {
+    let bodyTask = {}
+
     if (!req.body.desc.trim()) {
       return res.status(400).send('Descrição é um campo obrigatório!')
     }
 
-    req.body.userId = req.user.id
+    bodyTask.desc = req.body.desc
+    bodyTask.userId = req.user.id
+    bodyTask.estimateAt = req.body.estimateAt.slice(0, 19).replace('T', ' ')
 
     app
       .db('tasks')
-      .insert(req.body)
+      .insert(bodyTask)
       .then(_ => res.status(204).send())
-      .catch(err => res.status(400).json(err))
+      .catch(err => {
+        res.status(400).json(err)
+      })
   }
 
   const remove = (req, res) => {
